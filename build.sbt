@@ -76,7 +76,7 @@ lazy val rocketLibDeps = (rocketchip / Keys.libraryDependencies)
 //-------------------------------------------------
 // my project
 //-------------------------------------------------
-lazy val hey = (project in file("."))
+lazy val root = (project in file("."))
   .dependsOn(rocketchip)
   .settings(libraryDependencies ++= rocketLibDeps.value)
   .settings(chiselSettings, commonSetting)

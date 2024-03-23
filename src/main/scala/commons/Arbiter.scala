@@ -27,7 +27,6 @@ class SimpleRRArbiter(nReq: Int) extends Arbiter {
 }
 
 class RRArbiter(nReq: Int) extends Arbiter {
-  lazy val thermo = UIntToThermo(maskedRequest)
-  def getGrant: UInt = thermo & (~getNextMask).asUInt
-  def getNextMask: UInt = (thermo << 1).asUInt
+  def getGrant: UInt = UIntToThermo(maskedRequest) & (~getNextMask).asUInt
+  def getNextMask: UInt = (UIntToThermo(maskedRequest) << 1).asUInt
 }
