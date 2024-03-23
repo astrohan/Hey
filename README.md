@@ -23,7 +23,7 @@ To set up the HEY project for development and testing, follow these steps:
 1.  **Clone the Repository:**
     
 ```shell
-git clone https://github.com/yourgithubusername/hey.git
+git clone https://github.com/astrohan/Hey.git
 cd hey
 ```
     
