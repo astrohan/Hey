@@ -4,19 +4,21 @@ import chisel3._
 import chisel3.util.RegEnable
 import commons.CommonUtils.UIntToThermo
 
+class ArbiterIO(nReq: Int) extends Bundle {
+  val request = Input(UInt(nReq.W))
+  val trigger = Input(Bool())
+  val grant = Output(UInt(nReq.W))
+}
 
 abstract class Arbiter(val nReq: Int = 4) extends Module {
-  val io = IO(new Bundle {
-    val request = Input(UInt(nReq.W))
-    val trigger = Input(Bool())
-    val grant = Output(UInt(nReq.W))
-  })
+  val io = IO(new ArbiterIO(nReq))
 
-  val mask = RegEnable(getNextMask, 0.U, io.trigger)
+  val mask = RegInit(0.U(nReq.W))
   val maskedRequest = Mux((mask & io.request).orR, mask & io.request, io.request)
 
   io.grant := getGrant
-
+  when(io.trigger) { mask := getNextMask }
+  
   def getGrant: UInt
   def getNextMask: UInt
 }

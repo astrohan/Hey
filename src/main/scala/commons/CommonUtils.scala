@@ -10,7 +10,9 @@ object CommonUtils {
   def UIntToThermo(x: UInt): UInt = {
     val length = x.getWidth
     val nStage = log2Ceil(length)
-
+    val req = Wire(UInt((1<<log2Ceil(length)).W))
+    req := x
+    
     @tailrec
     def loop(s: Int, prev: Seq[Bool]): Seq[Bool] = {
       if(s == nStage) prev
@@ -23,6 +25,6 @@ object CommonUtils {
         loop(s+1, next)
       }
     }
-    VecInit(loop(0, x.asBools)).asUInt
+    VecInit(loop(0, req.asBools)).asUInt
   }
 }
