@@ -23,12 +23,12 @@ abstract class Arbiter(val nReq: Int = 4) extends Module {
   def getNextMask: UInt
 }
 
-class SimpleRRArbiter(nReq: Int) extends Arbiter {
+class SimpleRRArbiter(nReq: Int) extends Arbiter(nReq) {
   def getGrant: UInt = maskedRequest & ((~maskedRequest).asUInt + 1.U)
   def getNextMask: UInt = (~((io.grant<<1).asUInt - 1.U)).asUInt
 }
 
-class RRArbiter(nReq: Int) extends Arbiter {
+class RRArbiter(nReq: Int) extends Arbiter(nReq) {
   def getGrant: UInt = UIntToThermo(maskedRequest) & (~getNextMask).asUInt
   def getNextMask: UInt = (UIntToThermo(maskedRequest) << 1).asUInt
 }

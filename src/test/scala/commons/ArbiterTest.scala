@@ -1,6 +1,7 @@
 package commons
 
 import chiseltest._
+import commons.CommonUtils.log2
 
 
 class ArbiterTest extends hey.BaseTest {
@@ -15,7 +16,7 @@ class ArbiterTest extends hey.BaseTest {
         for(i <- 0 until 32) {
           dut.io.trigger.poke(true)
           dut.io.request.poke((1 << nReq) - 1)
-          dut.io.grant.expect(((1 << nReq) - 1) << (i%nReq))
+          dut.io.grant.expect(1<<(i%nReq))
           dut.clock.step()
         }
       }

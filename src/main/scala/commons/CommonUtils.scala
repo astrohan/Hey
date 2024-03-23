@@ -7,6 +7,7 @@ import scala.annotation.tailrec
 
 
 object CommonUtils {
+  def log2(x: Double) = math.log10(x) / math.log10(2)
   def UIntToThermo(x: UInt): UInt = {
     val length = x.getWidth
     val nStage = log2Ceil(length)
