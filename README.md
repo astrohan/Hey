@@ -24,7 +24,7 @@ To set up the HEY project for development and testing, follow these steps:
     
 ```shell
 git clone https://github.com/astrohan/Hey.git
-cd hey
+cd Hey
 ```
     
 2.  **Set Up the Scala Project:** The Scala project requires a specific setup to integrate with RocketChip and CDE. Run the `build-setup.sh` script to automate this process:
