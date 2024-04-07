@@ -28,4 +28,21 @@ object CommonUtils {
     }
     VecInit(loop(0, req.asBools)).asUInt
   }
+
+  implicit class UtilsForUInt[T<:UInt](x: T) {
+    def inside(a: UInt*) = a.map(_ === x).reduce(_ || _)
+  }
+
+  implicit class UtilsForBundle[T<:Bundle](x: T) {
+    def connect(elems: (T => (Data, Data))*): T = {
+      elems.map{ fn => fn(x) }
+      x
+    }
+
+    def connect(init: T, elems: (T => (Data, Data))*): T = {
+      x := init
+      elems.map{ fn => fn(x) }
+      x
+    }
+  }
 }

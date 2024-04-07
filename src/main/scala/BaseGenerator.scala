@@ -23,6 +23,7 @@ abstract class BaseGenerator(args: Array[String]) extends HasRocketChipStageUtil
   new chisel3.stage.ChiselStage().emitFirrtl(
     design,
     Array(
+      //"--full-stacktrace",
       "--target-dir", targetDir,
       "-fct", "firrtl.passes.InlineInstances",
       "--output-annotation-file", fullName,
