@@ -1,6 +1,6 @@
 PROJECT := ${shell git rev-parse --show-toplevel}
 
-TESTS  = rrarbiter weight_rrarbiter
+TESTS  = rrarbiter weight_rrarbiter async_fifo
 
 
 VERILATOR_OPTS  = --main --timing --cc --exe --build -O2
