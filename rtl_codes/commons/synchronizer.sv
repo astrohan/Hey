@@ -23,8 +23,7 @@ module synchronizer #(
     if (reset)
       reg_q <= {STAGES{ResetValue}};
     else
-    //  reg_q <= {reg_q[STAGES-2:0], $random & 1 ? x_d : x};
-      reg_q <= {reg_q[STAGES-2:0], x_d};
+      reg_q <= {reg_q[STAGES-2:0], $urandom_range(1) ? x_d : x};
   end
 
   assign y = reg_q[STAGES-1];
